@@ -1,0 +1,78 @@
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kaptGenerateStubsDebugKotlin UP-TO-DATE
+> Task :app:kaptDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+
+> Task :app:compileDebugKotlin FAILED
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/chat/ChatFragment.kt:21:23 Unresolved reference 'ChatFragmentArgs'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/chat/ChatFragment.kt:21:43 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/chat/ChatFragment.kt:21:43 Not enough information to infer type argument for 'Args'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/chat/ChatFragment.kt:21:43 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/chat/ChatFragment.kt:21:43 Property delegate must have a 'getValue(ChatFragment, KProperty1<ChatFragment, ERROR CLASS: Symbol not found for ChatFragmentArgs>)' method. None of the following functions is applicable:
+fun <T> Lazy<T>.getValue(thisRef: Any?, property: KProperty<*>): T
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/chat/ChatFragment.kt:21:43 Not enough information to infer type argument for 'T'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/chat/ChatFragment.kt:35:27 Unresolved reference 'tripId'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:30:23 Unresolved reference 'TripDetailFragmentArgs'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:30:49 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:30:49 Not enough information to infer type argument for 'Args'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:30:49 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:30:49 Property delegate must have a 'getValue(TripDetailFragment, KProperty1<TripDetailFragment, ERROR CLASS: Symbol not found for TripDetailFragmentArgs>)' method. None of the following functions is applicable:
+fun <T> Lazy<T>.getValue(thisRef: Any?, property: KProperty<*>): T
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:30:49 Not enough information to infer type argument for 'T'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:49:27 Unresolved reference 'tripId'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailFragment.kt:101:34 Unresolved reference 'TripDetailFragmentDirections'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailViewModel.kt:17:5 Modifier 'private' is not applicable to 'value parameter'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/detail/TripDetailViewModel.kt:25:16 Unresolved reference 'getTripDetailUseCase'.
+e: file:///C:/Users/PC/AndroidStudioProjects/projet_couvoiturage/app/src/main/java/com/example/projet_couvoiturage/ui/employee/trips/TripListFragment.kt:34:26 Unresolved reference 'TripListFragmentDirections'.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 4s
+33 actionable tasks: 1 executed, 32 up-to-date

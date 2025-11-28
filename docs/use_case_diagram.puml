@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+actor Passager
+actor Conducteur
+actor Administrateur
+
+rectangle "Covoiturage-Intell" {
+  usecase "S'authentifier" as UC1
+  usecase "Consulter/rechercher un trajet" as UC2
+  usecase "Recevoir des notifications push" as UC3
+  usecase "Communiquer via chat instantané" as UC4
+  usecase "Voir la localisation et l'itinéraire" as UC5
+  usecase "Synchroniser les données" as UC6
+  usecase "Recevoir des alertes critiques" as UC7
+  usecase "Consulter les rapports synthétiques" as UC8
+  usecase "Réserver un siège" as UC9
+  usecase "Annuler un trajet" as UC10
+}
+
+Passager --> UC1
+Passager --> UC2
+Passager --> UC3
+Passager --> UC4
+Passager --> UC5
+Passager --> UC6
+Passager --> UC9
+
+Conducteur --> UC1
+Conducteur --> UC2
+Conducteur --> UC3
+Conducteur --> UC4
+Conducteur --> UC5
+Conducteur --> UC6
+
+Administrateur --> UC1
+Administrateur --> UC7
+Administrateur --> UC8
+Administrateur --> UC10
+
+@enduml

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_admin_dashboard"
+        android:title="Dashboard"
+        android:icon="@android:drawable/ic_menu_info_details" />
+    <item
+        android:id="@+id/nav_admin_alerts"
+        android:title="Alerts"
+        android:icon="@android:drawable/ic_popup_reminder" />
+    <item
+        android:id="@+id/nav_admin_trips"
+        android:title="Trips"
+        android:icon="@android:drawable/ic_menu_agenda" />
+    <item
+        android:id="@+id/nav_admin_reports"
+        android:title="Reports"
+        android:icon="@android:drawable/ic_menu_sort_by_size" />
+</menu>

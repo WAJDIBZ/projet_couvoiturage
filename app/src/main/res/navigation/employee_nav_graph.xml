@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/employee_nav_graph"
+    app:startDestination="@id/nav_trips">
+
+    <fragment
+        android:id="@+id/nav_trips"
+        android:name="com.example.projet_couvoiturage.ui.employee.trips.TripListFragment"
+        android:label="Trips"
+        tools:layout="@layout/fragment_trip_list">
+        <action
+            android:id="@+id/action_TripListFragment_to_TripDetailFragment"
+            app:destination="@id/tripDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tripDetailFragment"
+        android:name="com.example.projet_couvoiturage.ui.employee.detail.TripDetailFragment"
+        android:label="Trip Detail"
+        tools:layout="@layout/fragment_trip_detail">
+        <argument
+            android:name="tripId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_TripDetailFragment_to_ChatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.projet_couvoiturage.ui.employee.chat.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat">
+        <argument
+            android:name="tripId"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_reservations"
+        android:name="com.example.projet_couvoiturage.ui.employee.reservations.ReservationsFragment"
+        android:label="Reservations"
+        tools:layout="@layout/fragment_reservations" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.projet_couvoiturage.ui.employee.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

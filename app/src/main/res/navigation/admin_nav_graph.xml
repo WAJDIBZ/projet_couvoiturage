@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_nav_graph"
+    app:startDestination="@id/nav_admin_dashboard">
+
+    <fragment
+        android:id="@+id/nav_admin_dashboard"
+        android:name="com.example.projet_couvoiturage.ui.admin.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_admin_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_admin_alerts"
+        android:name="com.example.projet_couvoiturage.ui.admin.alerts.AlertsFragment"
+        android:label="Alerts"
+        tools:layout="@layout/fragment_alerts" />
+
+    <fragment
+        android:id="@+id/nav_admin_trips"
+        android:name="com.example.projet_couvoiturage.ui.admin.trips.AdminTripsFragment"
+        android:label="Trips"
+        tools:layout="@layout/fragment_admin_trips" />
+
+    <fragment
+        android:id="@+id/nav_admin_reports"
+        android:name="com.example.projet_couvoiturage.ui.admin.reports.ReportsFragment"
+        android:label="Reports"
+        tools:layout="@layout/fragment_reports" />
+
+</navigation>
