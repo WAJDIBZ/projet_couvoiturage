@@ -44,6 +44,18 @@
         <activity
             android:name=".ui.traject.AddTrajectActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.traject.MyTrajectsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.traject.TrajectDetailsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.traject.ConducteurHomeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

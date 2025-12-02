@@ -6,9 +6,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projet_couvoiturage.R
-import com.example.projet_couvoiturage.data.local.AppDatabase
 import com.example.projet_couvoiturage.data.entity.Conducteur
-import com.example.projet_couvoiturage.util.HashUtil
+import com.example.projet_couvoiturage.data.local.AppDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
                     return@launch
                 }
                 val ok = db.conducteurDao().insert(
-                    Conducteur(email = e, passwordHash = HashUtil.sha256(p), address = a, name = n)
+                    Conducteur(email = e, password = p, address = a, name = n)
                 )
                 runOnUiThread {
                     if (ok > 0) {

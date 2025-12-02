@@ -53,4 +53,7 @@ object DatabaseModule {
 
     @Provides
     fun provideTrajectDao(database: AppDatabase): TrajectDao = database.trajectDao()
+
+    @Provides
+    fun providePlaceDao(database: AppDatabase): PlaceDao = database.placeDao()
 }

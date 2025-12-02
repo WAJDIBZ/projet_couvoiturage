@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <Button
+        android:id="@+id/btn_add_traject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Traject"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_my_trajects"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Trajects" />
+</LinearLayout>
