@@ -48,10 +48,10 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun trajectDao(): TrajectDao
 
     companion object {
-        private const val PREPOP_EMAIL = "driver@example.com"
+        private const val PREPOP_EMAIL = "driver@gmail.com"
         private const val PREPOP_ADDRESS = "123 Rue Exemple, Paris"
         private const val PREPOP_NAME = "Driver One"
-        private const val PREPOP_PASSWORD = "password"
+        private const val PREPOP_PASSWORD = "driver123"
 
         @Volatile
         private var INSTANCE: AppDatabase? = null
@@ -104,27 +104,27 @@ abstract class AppDatabase : RoomDatabase() {
             // Users
             val admin = UserEntity(
                 fullName = "Administrateur Covoiturage-Intell",
-                email = "admin@covoiturage-intell.tn",
-                password = "Admin@2024",
+                email = "admin@gmail.com",
+                password = "Admin@2025",
                 isAdmin = true
             )
             userDao.insertUser(admin)
 
-            val ahmed = UserEntity(
-                fullName = "Ahmed Ben Ali",
-                email = "ahmed.benali@covoiturage-intell.tn",
-                password = "ahmed123",
+            val moukhtar = UserEntity(
+                fullName = "Moukhtar ben moustfa",
+                email = "moukhtar@gmail.com",
+                password = "moukhtar123",
                 isAdmin = false
             )
-            userDao.insertUser(ahmed)
+            userDao.insertUser(moukhtar)
 
-            val fatma = UserEntity(
-                fullName = "Fatma Trabelsi",
-                email = "fatma.trabelsi@covoiturage-intell.tn",
-                password = "fatma123",
+            val idriss = UserEntity(
+                fullName = "Idriss Somrani",
+                email = "idriss@gmail.com",
+                password = "idriss123",
                 isAdmin = false
             )
-            userDao.insertUser(fatma)
+            userDao.insertUser(idriss)
 
             val youssef = UserEntity(
                 fullName = "Youssef Khemiri",
@@ -135,34 +135,34 @@ abstract class AppDatabase : RoomDatabase() {
             userDao.insertUser(youssef)
 
             // Trips
-            val driverAhmed = userDao.getUserByEmail("ahmed.benali@covoiturage-intell.tn") ?: return
-            val driverFatma = userDao.getUserByEmail("fatma.trabelsi@covoiturage-intell.tn") ?: return
+            val driverMoukhtar = userDao.getUserByEmail("moukhtar@gmail.com") ?: return
+            val driverIdriss = userDao.getUserByEmail("idriss@gmail.com") ?: return
             val driverYoussef = userDao.getUserByEmail("youssef.khemiri@covoiturage-intell.tn") ?: return
 
             val trips = listOf(
                 TripEntity(
-                    driverId = driverAhmed.id,
+                    driverId = driverMoukhtar.id,
                     departureCity = "Tunis", departureLat = 36.8065, departureLng = 10.1815,
                     arrivalCity = "Sousse", arrivalLat = 35.8256, arrivalLng = 10.6369,
                     date = "2025-05-10", departureTime = "08:00",
                     seatsTotal = 4, seatsAvailable = 4, pricePerSeat = 15.0, notes = "Non-smoking"
                 ),
                 TripEntity(
-                    driverId = driverAhmed.id,
+                    driverId = driverMoukhtar.id,
                     departureCity = "Tunis", departureLat = 36.8065, departureLng = 10.1815,
-                    arrivalCity = "Bizerte", arrivalLat = 37.2746, arrivalLng = 9.8739,
+                    arrivalCity = "Beja", arrivalLat = 36.7256, arrivalLng = 9.1817,
                     date = "2025-05-11", departureTime = "09:00",
                     seatsTotal = 3, seatsAvailable = 3, pricePerSeat = 10.0, notes = "Music allowed"
                 ),
                 TripEntity(
-                    driverId = driverFatma.id,
-                    departureCity = "Sousse", departureLat = 35.8256, departureLng = 10.6369,
-                    arrivalCity = "Sfax", arrivalLat = 34.7406, arrivalLng = 10.7603,
+                    driverId = driverIdriss.id,
+                    departureCity = "Beja", departureLat = 36.7256, departureLng = 9.1817,
+                    arrivalCity = "Tunis", arrivalLat = 36.8065, arrivalLng = 10.1815,
                     date = "2025-05-12", departureTime = "14:00",
                     seatsTotal = 4, seatsAvailable = 4, pricePerSeat = 20.0, notes = "AC available"
                 ),
                 TripEntity(
-                    driverId = driverFatma.id,
+                    driverId = driverIdriss.id,
                     departureCity = "Sfax", departureLat = 34.7406, departureLng = 10.7603,
                     arrivalCity = "Gabès", arrivalLat = 33.8815, arrivalLng = 10.0982,
                     date = "2025-05-13", departureTime = "10:00",
