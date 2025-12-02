@@ -9,12 +9,20 @@ import com.example.projet_couvoiturage.data.dao.ConducteurDao
 import com.example.projet_couvoiturage.data.dao.TrajectDao
 import com.example.projet_couvoiturage.data.entity.Conducteur
 import com.example.projet_couvoiturage.data.entity.Traject
-import com.example.projet_couvoiturage.data.local.dao.*
-import com.example.projet_couvoiturage.data.local.entity.*
+import com.example.projet_couvoiturage.data.local.dao.AlertDao
+import com.example.projet_couvoiturage.data.local.dao.ChatDao
+import com.example.projet_couvoiturage.data.local.dao.ReservationDao
+import com.example.projet_couvoiturage.data.local.dao.TripDao
+import com.example.projet_couvoiturage.data.local.dao.UserDao
+import com.example.projet_couvoiturage.data.local.entity.AlertEntity
+import com.example.projet_couvoiturage.data.local.entity.ChatMessageEntity
+import com.example.projet_couvoiturage.data.local.entity.ReservationEntity
+import com.example.projet_couvoiturage.data.local.entity.TripEntity
+import com.example.projet_couvoiturage.data.local.entity.UserEntity
+import com.example.projet_couvoiturage.util.HashUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
 
 @Database(
     entities = [
@@ -26,7 +34,7 @@ import java.util.concurrent.Executors
         Conducteur::class,
         Traject::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -43,24 +51,30 @@ abstract class AppDatabase : RoomDatabase() {
         private const val PREPOP_EMAIL = "driver@example.com"
         private const val PREPOP_ADDRESS = "123 Rue Exemple, Paris"
         private const val PREPOP_NAME = "Driver One"
+        private const val PREPOP_PASSWORD = "password"
 
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): AppDatabase {
+        fun getDatabase(
+            context: Context,
+            scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+        ): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "covoiturage_database"
                 )
-                .fallbackToDestructiveMigration()
-                .addCallback(AppDatabaseCallback(scope))
-                .build()
+                    .fallbackToDestructiveMigration()
+                    .addCallback(AppDatabaseCallback(scope))
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
+
+        fun get(context: Context): AppDatabase = getDatabase(context)
     }
 
     private class AppDatabaseCallback(
@@ -81,7 +95,7 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        suspend fun populateDatabase(
+        private suspend fun populateDatabase(
             userDao: UserDao,
             tripDao: TripDao,
             alertDao: AlertDao,
@@ -121,8 +135,6 @@ abstract class AppDatabase : RoomDatabase() {
             userDao.insertUser(youssef)
 
             // Trips
-            // Need IDs for drivers. Since we just inserted, we can fetch them or assume IDs if we clear DB.
-            // But onCreate runs once. We can fetch by email.
             val driverAhmed = userDao.getUserByEmail("ahmed.benali@covoiturage-intell.tn") ?: return
             val driverFatma = userDao.getUserByEmail("fatma.trabelsi@covoiturage-intell.tn") ?: return
             val driverYoussef = userDao.getUserByEmail("youssef.khemiri@covoiturage-intell.tn") ?: return
@@ -191,10 +203,11 @@ abstract class AppDatabase : RoomDatabase() {
 
             val conducteur = Conducteur(
                 email = PREPOP_EMAIL,
+                passwordHash = HashUtil.sha256(PREPOP_PASSWORD),
                 address = PREPOP_ADDRESS,
                 name = PREPOP_NAME
             )
-            conducteurDao.insertOrIgnore(conducteur)
+            conducteurDao.insert(conducteur)
         }
     }
 }

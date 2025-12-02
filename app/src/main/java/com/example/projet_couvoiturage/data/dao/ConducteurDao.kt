@@ -4,26 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
 import com.example.projet_couvoiturage.data.entity.Conducteur
 
 @Dao
 interface ConducteurDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertOrIgnore(conducteur: Conducteur): Long
-
-    @Update
-    suspend fun update(conducteur: Conducteur)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insert(conducteur: Conducteur): Long
 
     @Query("SELECT * FROM conducteurs WHERE email = :email LIMIT 1")
     suspend fun getByEmail(email: String): Conducteur?
 
-    @Transaction
-    suspend fun upsert(conducteur: Conducteur) {
-        val result = insertOrIgnore(conducteur)
-        if (result == -1L) {
-            update(conducteur)
-        }
-    }
+    @Query("SELECT * FROM conducteurs WHERE email = :email AND passwordHash = :hash LIMIT 1")
+    suspend fun authenticate(email: String, hash: String): Conducteur?
 }
