@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.projet_couvoiturage.R
-import com.example.projet_couvoiturage.data.AppDatabase
+import com.example.projet_couvoiturage.data.local.AppDatabase
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
@@ -13,8 +14,10 @@ class AddTrajectActivity : AppCompatActivity() {
 
     private val conducteurEmail = "driver@example.com"
 
+    private val database by lazy { AppDatabase.getDatabase(applicationContext, lifecycleScope) }
+
     private val viewModel: AddTrajectViewModel by viewModels {
-        AddTrajectViewModel.provideFactory(AppDatabase.get(applicationContext))
+        AddTrajectViewModel.provideFactory(database)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -5,6 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.projet_couvoiturage.data.dao.ConducteurDao
+import com.example.projet_couvoiturage.data.dao.TrajectDao
+import com.example.projet_couvoiturage.data.entity.Conducteur
+import com.example.projet_couvoiturage.data.entity.Traject
 import com.example.projet_couvoiturage.data.local.dao.*
 import com.example.projet_couvoiturage.data.local.entity.*
 import kotlinx.coroutines.CoroutineScope
@@ -18,9 +22,11 @@ import java.util.concurrent.Executors
         TripEntity::class,
         ReservationEntity::class,
         ChatMessageEntity::class,
-        AlertEntity::class
+        AlertEntity::class,
+        Conducteur::class,
+        Traject::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -30,8 +36,14 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun reservationDao(): ReservationDao
     abstract fun chatDao(): ChatDao
     abstract fun alertDao(): AlertDao
+    abstract fun conducteurDao(): ConducteurDao
+    abstract fun trajectDao(): TrajectDao
 
     companion object {
+        private const val PREPOP_EMAIL = "driver@example.com"
+        private const val PREPOP_ADDRESS = "123 Rue Exemple, Paris"
+        private const val PREPOP_NAME = "Driver One"
+
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
@@ -42,6 +54,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "covoiturage_database"
                 )
+                .fallbackToDestructiveMigration()
                 .addCallback(AppDatabaseCallback(scope))
                 .build()
                 INSTANCE = instance
@@ -58,12 +71,22 @@ abstract class AppDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.userDao(), database.tripDao(), database.alertDao())
+                    populateDatabase(
+                        database.userDao(),
+                        database.tripDao(),
+                        database.alertDao(),
+                        database.conducteurDao()
+                    )
                 }
             }
         }
 
-        suspend fun populateDatabase(userDao: UserDao, tripDao: TripDao, alertDao: AlertDao) {
+        suspend fun populateDatabase(
+            userDao: UserDao,
+            tripDao: TripDao,
+            alertDao: AlertDao,
+            conducteurDao: ConducteurDao
+        ) {
             // Users
             val admin = UserEntity(
                 fullName = "Administrateur Covoiturage-Intell",
@@ -165,6 +188,13 @@ abstract class AppDatabase : RoomDatabase() {
             )
             alertDao.insertAlert(alert1)
             alertDao.insertAlert(alert2)
+
+            val conducteur = Conducteur(
+                email = PREPOP_EMAIL,
+                address = PREPOP_ADDRESS,
+                name = PREPOP_NAME
+            )
+            conducteurDao.insertOrIgnore(conducteur)
         }
     }
 }

@@ -3,7 +3,7 @@ package com.example.projet_couvoiturage.ui.traject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.projet_couvoiturage.data.AppDatabase
+import com.example.projet_couvoiturage.data.local.AppDatabase
 import com.example.projet_couvoiturage.data.entity.Traject
 import com.example.projet_couvoiturage.data.repo.TrajectRepository
 import kotlinx.coroutines.Dispatchers
