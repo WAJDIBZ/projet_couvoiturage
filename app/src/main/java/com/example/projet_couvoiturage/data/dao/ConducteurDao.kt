@@ -14,6 +14,6 @@ interface ConducteurDao {
     @Query("SELECT * FROM conducteurs WHERE email = :email LIMIT 1")
     suspend fun getByEmail(email: String): Conducteur?
 
-    @Query("SELECT * FROM conducteurs WHERE email = :email AND passwordHash = :hash LIMIT 1")
-    suspend fun authenticate(email: String, hash: String): Conducteur?
+    @Query("SELECT * FROM conducteurs WHERE email = :email AND password = :password LIMIT 1")
+    suspend fun authenticate(email: String, password: String): Conducteur?
 }

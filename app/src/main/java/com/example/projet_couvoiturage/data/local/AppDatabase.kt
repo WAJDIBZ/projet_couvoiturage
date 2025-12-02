@@ -19,7 +19,6 @@ import com.example.projet_couvoiturage.data.local.entity.ChatMessageEntity
 import com.example.projet_couvoiturage.data.local.entity.ReservationEntity
 import com.example.projet_couvoiturage.data.local.entity.TripEntity
 import com.example.projet_couvoiturage.data.local.entity.UserEntity
-import com.example.projet_couvoiturage.util.HashUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,7 +33,7 @@ import kotlinx.coroutines.launch
         Conducteur::class,
         Traject::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -203,7 +202,7 @@ abstract class AppDatabase : RoomDatabase() {
 
             val conducteur = Conducteur(
                 email = PREPOP_EMAIL,
-                passwordHash = HashUtil.sha256(PREPOP_PASSWORD),
+                password = PREPOP_PASSWORD,
                 address = PREPOP_ADDRESS,
                 name = PREPOP_NAME
             )
