@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
@@ -10,68 +8,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/input_origin"
+            android:hint="Origin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Origin">
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_origin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/input_destination"
+            android:hint="Destination"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Destination">
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_destination"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/input_date"
+            android:hint="Date (yyyy-MM-dd)"
+            android:focusable="false"
+            android:clickable="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="DateTime (millis)">
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_datetime"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/input_time"
+            android:hint="Time (HH:mm)"
+            android:focusable="false"
+            android:clickable="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Seats">
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_seats"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/input_seats"
+            android:hint="Seats"
+            android:inputType="number"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Notes (optional)">
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_notes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/input_notes"
+            android:hint="Notes (optional)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Save Traject"
-            style="@style/Widget.MaterialComponents.Button" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>

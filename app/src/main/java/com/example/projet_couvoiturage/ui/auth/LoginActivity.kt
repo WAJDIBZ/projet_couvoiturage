@@ -7,10 +7,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projet_couvoiturage.R
+import com.example.projet_couvoiturage.auth.AuthRepository
 import com.example.projet_couvoiturage.auth.SessionManager
-import com.example.projet_couvoiturage.data.local.AppDatabase
+import com.example.projet_couvoiturage.ui.admin.AdminDashboardActivity
+import com.example.projet_couvoiturage.ui.employee.EmployeeHomeActivity
 import com.example.projet_couvoiturage.ui.traject.AddTrajectActivity
-import com.example.projet_couvoiturage.util.HashUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,8 +26,6 @@ class LoginActivity : AppCompatActivity() {
         val btn = findViewById<Button>(R.id.btn_login)
         val btnReg = findViewById<Button>(R.id.btn_go_register)
 
-        val db = AppDatabase.get(this)
-
         btn.setOnClickListener {
             val e = email.text.toString().trim()
             val p = pass.text.toString()
@@ -34,16 +33,19 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Enter email & password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            val repo = AuthRepository(this)
             CoroutineScope(Dispatchers.IO).launch {
-                val user = db.conducteurDao().authenticate(e, HashUtil.sha256(p))
+                val role = repo.login(e, p)
                 runOnUiThread {
-                    if (user != null) {
-                        SessionManager.currentEmail = user.email
-                        Toast.makeText(this@LoginActivity, "Welcome ${'$'}{user.email}", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LoginActivity, AddTrajectActivity::class.java))
-                        finish()
-                    } else {
+                    if (role == null) {
                         Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
+                    } else {
+                        when (role) {
+                            SessionManager.Role.ADMIN -> startActivity(Intent(this@LoginActivity, AdminDashboardActivity::class.java))
+                            SessionManager.Role.USER -> startActivity(Intent(this@LoginActivity, EmployeeHomeActivity::class.java))
+                            SessionManager.Role.CONDUCTEUR -> startActivity(Intent(this@LoginActivity, AddTrajectActivity::class.java))
+                        }
+                        finish()
                     }
                 }
             }
