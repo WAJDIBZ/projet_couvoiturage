@@ -2,6 +2,8 @@ package com.example.projet_couvoiturage.di
 
 import android.content.Context
 import com.example.projet_couvoiturage.data.local.AppDatabase
+import com.example.projet_couvoiturage.data.dao.ConducteurDao
+import com.example.projet_couvoiturage.data.dao.TrajectDao
 import com.example.projet_couvoiturage.data.local.dao.*
 import dagger.Module
 import dagger.Provides
@@ -45,4 +47,10 @@ object DatabaseModule {
 
     @Provides
     fun provideAlertDao(database: AppDatabase): AlertDao = database.alertDao()
+
+    @Provides
+    fun provideConducteurDao(database: AppDatabase): ConducteurDao = database.conducteurDao()
+
+    @Provides
+    fun provideTrajectDao(database: AppDatabase): TrajectDao = database.trajectDao()
 }
