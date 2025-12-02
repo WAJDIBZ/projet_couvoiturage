@@ -6,13 +6,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.projet_couvoiturage.R
+import com.example.projet_couvoiturage.auth.SessionManager
 import com.example.projet_couvoiturage.data.local.AppDatabase
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
 class AddTrajectActivity : AppCompatActivity() {
-
-    private val conducteurEmail = "driver@example.com"
 
     private val database by lazy { AppDatabase.getDatabase(applicationContext, lifecycleScope) }
 
@@ -23,6 +22,13 @@ class AddTrajectActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_traject)
+
+        val current = SessionManager.currentEmail
+        if (current == null) {
+            Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
         val inputOrigin = findViewById<TextInputEditText>(R.id.input_origin)
         val inputDestination = findViewById<TextInputEditText>(R.id.input_destination)
@@ -50,7 +56,7 @@ class AddTrajectActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            viewModel.add(conducteurEmail, origin, dest, dt, seats, notes)
+            viewModel.add(current, origin, dest, dt, seats, notes)
             Toast.makeText(this, "Traject added", Toast.LENGTH_SHORT).show()
             finish()
         }
