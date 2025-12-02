@@ -11,7 +11,7 @@ import com.example.projet_couvoiturage.auth.AuthRepository
 import com.example.projet_couvoiturage.auth.SessionManager
 import com.example.projet_couvoiturage.ui.admin.AdminDashboardActivity
 import com.example.projet_couvoiturage.ui.employee.EmployeeHomeActivity
-import com.example.projet_couvoiturage.ui.traject.AddTrajectActivity
+import com.example.projet_couvoiturage.ui.traject.ConducteurHomeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
                         when (role) {
                             SessionManager.Role.ADMIN -> startActivity(Intent(this@LoginActivity, AdminDashboardActivity::class.java))
                             SessionManager.Role.USER -> startActivity(Intent(this@LoginActivity, EmployeeHomeActivity::class.java))
-                            SessionManager.Role.CONDUCTEUR -> startActivity(Intent(this@LoginActivity, AddTrajectActivity::class.java))
+                            SessionManager.Role.CONDUCTEUR -> startActivity(Intent(this@LoginActivity, ConducteurHomeActivity::class.java))
                         }
                         finish()
                     }

@@ -11,11 +11,13 @@ import com.example.projet_couvoiturage.data.entity.Conducteur
 import com.example.projet_couvoiturage.data.entity.Traject
 import com.example.projet_couvoiturage.data.local.dao.AlertDao
 import com.example.projet_couvoiturage.data.local.dao.ChatDao
+import com.example.projet_couvoiturage.data.local.dao.PlaceDao
 import com.example.projet_couvoiturage.data.local.dao.ReservationDao
 import com.example.projet_couvoiturage.data.local.dao.TripDao
 import com.example.projet_couvoiturage.data.local.dao.UserDao
 import com.example.projet_couvoiturage.data.local.entity.AlertEntity
 import com.example.projet_couvoiturage.data.local.entity.ChatMessageEntity
+import com.example.projet_couvoiturage.data.local.entity.PlaceEntity
 import com.example.projet_couvoiturage.data.local.entity.ReservationEntity
 import com.example.projet_couvoiturage.data.local.entity.TripEntity
 import com.example.projet_couvoiturage.data.local.entity.UserEntity
@@ -31,9 +33,10 @@ import kotlinx.coroutines.launch
         ChatMessageEntity::class,
         AlertEntity::class,
         Conducteur::class,
-        Traject::class
+        Traject::class,
+        PlaceEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -45,6 +48,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun alertDao(): AlertDao
     abstract fun conducteurDao(): ConducteurDao
     abstract fun trajectDao(): TrajectDao
+    abstract fun placeDao(): PlaceDao
 
     companion object {
         private const val PREPOP_EMAIL = "driver@gmail.com"
@@ -88,7 +92,8 @@ abstract class AppDatabase : RoomDatabase() {
                         database.userDao(),
                         database.tripDao(),
                         database.alertDao(),
-                        database.conducteurDao()
+                        database.conducteurDao(),
+                        database.placeDao()
                     )
                 }
             }
@@ -98,7 +103,8 @@ abstract class AppDatabase : RoomDatabase() {
             userDao: UserDao,
             tripDao: TripDao,
             alertDao: AlertDao,
-            conducteurDao: ConducteurDao
+            conducteurDao: ConducteurDao,
+            placeDao: PlaceDao
         ) {
             // Users
             val admin = UserEntity(
@@ -132,6 +138,14 @@ abstract class AppDatabase : RoomDatabase() {
                 isAdmin = false
             )
             userDao.insertUser(youssef)
+
+            val conducteurUser = UserEntity(
+                fullName = PREPOP_NAME,
+                email = PREPOP_EMAIL,
+                password = PREPOP_PASSWORD,
+                isAdmin = false
+            )
+            userDao.insertUser(conducteurUser)
 
             // Trips
             val driverMoukhtar = userDao.getUserByEmail("moukhtar@gmail.com") ?: return
@@ -183,6 +197,17 @@ abstract class AppDatabase : RoomDatabase() {
                 )
             )
             trips.forEach { tripDao.insertTrip(it) }
+
+            val places = listOf(
+                PlaceEntity(name = "Tunis", lat = 36.8065, lng = 10.1815),
+                PlaceEntity(name = "Sousse", lat = 35.8256, lng = 10.6369),
+                PlaceEntity(name = "Beja", lat = 36.7256, lng = 9.1817),
+                PlaceEntity(name = "Sfax", lat = 34.7406, lng = 10.7603),
+                PlaceEntity(name = "Gabès", lat = 33.8815, lng = 10.0982),
+                PlaceEntity(name = "Nabeul", lat = 36.4513, lng = 10.7353),
+                PlaceEntity(name = "Monastir", lat = 35.7770, lng = 10.8262)
+            )
+            placeDao.insertAll(places)
 
             // Alerts
             val alert1 = AlertEntity(

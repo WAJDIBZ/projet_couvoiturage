@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.projet_couvoiturage.data.local.entity.ReservationEntity
+import com.example.projet_couvoiturage.data.local.entity.UserEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,4 +25,14 @@ interface ReservationDao {
     
     @Query("SELECT COUNT(*) FROM reservations")
     suspend fun getReservationCount(): Int
+
+    @Query(
+        """
+        SELECT u.* FROM reservations r
+        JOIN users u ON u.id = r.passengerId
+        WHERE r.tripId = :tripId
+        ORDER BY u.fullName ASC
+        """
+    )
+    suspend fun passengersForTrip(tripId: Long): List<UserEntity>
 }
