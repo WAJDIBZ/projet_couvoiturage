@@ -21,10 +21,20 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if (SessionManager.isLoggedIn()) {
+            when (SessionManager.currentRole) {
+                SessionManager.Role.ADMIN -> startActivity(Intent(this, AdminDashboardActivity::class.java))
+                SessionManager.Role.USER -> startActivity(Intent(this, EmployeeHomeActivity::class.java))
+                SessionManager.Role.CONDUCTEUR -> startActivity(Intent(this, ConducteurHomeActivity::class.java))
+                else -> {}
+            }
+            finish()
+            return
+        }
+
         val email = findViewById<EditText>(R.id.login_email)
         val pass = findViewById<EditText>(R.id.login_password)
         val btn = findViewById<Button>(R.id.btn_login)
-        val btnReg = findViewById<Button>(R.id.btn_go_register)
 
         btn.setOnClickListener {
             val e = email.text.toString().trim()
@@ -49,10 +59,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-
-        btnReg.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }

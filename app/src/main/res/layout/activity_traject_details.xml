@@ -7,62 +7,104 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="#F5F5F5"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tv_route"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trip Details"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:contentPadding="16dp"
+            android:layout_marginBottom="24dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_route"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="8dp"
+                    android:text="Route" />
+
+                <TextView
+                    android:id="@+id/tv_date_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Date and time" />
+
+                <TextView
+                    android:id="@+id/tv_departure_coords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="4dp"
+                    android:text="Departure coords" />
+
+                <TextView
+                    android:id="@+id/tv_arrival_coords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="8dp"
+                    android:text="Arrival coords" />
+
+                <TextView
+                    android:id="@+id/tv_seats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#4CAF50"
+                    android:layout_marginBottom="8dp"
+                    android:text="Seats" />
+
+                <TextView
+                    android:id="@+id/tv_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:text="Notes" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="18sp"
-            android:text="Route" />
-
-        <TextView
-            android:id="@+id/tv_date_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date and time" />
-
-        <TextView
-            android:id="@+id/tv_departure_coords"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Departure coords" />
-
-        <TextView
-            android:id="@+id/tv_arrival_coords"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Arrival coords" />
-
-        <TextView
-            android:id="@+id/tv_seats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seats" />
-
-        <TextView
-            android:id="@+id/tv_notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notes" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:textColor="#333333"
             android:text="Passengers"
-            android:paddingTop="12dp"
-            android:paddingBottom="8dp" />
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/tv_passenger_empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No passengers yet"
-            android:visibility="gone"
-            android:padding="8dp" />
+            android:text="No passengers yet."
+            android:textColor="#757575"
+            android:padding="8dp"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_passengers"

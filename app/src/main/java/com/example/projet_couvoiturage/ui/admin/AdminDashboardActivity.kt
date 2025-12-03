@@ -28,9 +28,10 @@ class AdminDashboardActivity : AppCompatActivity() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_logout -> {
-                    val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
-                    prefs.edit().clear().apply()
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    com.example.projet_couvoiturage.auth.SessionManager.logout()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                     finish()
                     true
                 }
