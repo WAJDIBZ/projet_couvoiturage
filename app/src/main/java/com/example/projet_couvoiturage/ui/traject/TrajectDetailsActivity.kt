@@ -36,6 +36,26 @@ class TrajectDetailsActivity : AppCompatActivity() {
         val adapter = PassengerAdapter()
         passengerList.layoutManager = LinearLayoutManager(this)
         passengerList.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadTripData()
+    }
+
+    private fun loadTripData() {
+        val tripId = intent.getLongExtra("tripId", -1)
+        if (tripId == -1L) return
+
+        val route = findViewById<TextView>(R.id.tv_route)
+        val dateTime = findViewById<TextView>(R.id.tv_date_time)
+        val depCoords = findViewById<TextView>(R.id.tv_departure_coords)
+        val arrCoords = findViewById<TextView>(R.id.tv_arrival_coords)
+        val seats = findViewById<TextView>(R.id.tv_seats)
+        val notes = findViewById<TextView>(R.id.tv_notes)
+        val passengerEmpty = findViewById<TextView>(R.id.tv_passenger_empty)
+        val passengerList = findViewById<RecyclerView>(R.id.recycler_passengers)
+        val adapter = passengerList.adapter as PassengerAdapter
 
         lifecycleScope.launch(Dispatchers.IO) {
             val db = AppDatabase.get(this@TrajectDetailsActivity)

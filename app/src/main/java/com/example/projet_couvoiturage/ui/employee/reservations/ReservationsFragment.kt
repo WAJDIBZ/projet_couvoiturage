@@ -37,14 +37,13 @@ class ReservationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-        val userId = prefs.getLong("USER_ID", -1)
+        val userId = com.example.projet_couvoiturage.auth.SessionManager.currentUserId
         
         val adapter = ReservationAdapter()
         binding.rvReservations.layoutManager = LinearLayoutManager(context)
         binding.rvReservations.adapter = adapter
         
-        if (userId != -1L) {
+        if (userId != null) {
             viewModel.getReservations(userId).observe(viewLifecycleOwner) {
                 adapter.submitList(it)
             }
