@@ -35,6 +35,7 @@ class AddTrajectActivity : AppCompatActivity() {
         val dateEt = findViewById<EditText>(R.id.input_date)
         val timeEt = findViewById<EditText>(R.id.input_time)
         val seats = findViewById<EditText>(R.id.input_seats)
+        val priceEt = findViewById<EditText>(R.id.input_price)
         val notes = findViewById<EditText>(R.id.input_notes)
         val save = findViewById<Button>(R.id.btn_save)
 
@@ -93,11 +94,12 @@ class AddTrajectActivity : AppCompatActivity() {
             val dt = dateEt.text.toString().trim()
             val tm = timeEt.text.toString().trim()
             val seatsVal = seats.text.toString().trim().toIntOrNull()
+            val priceVal = priceEt.text.toString().trim().toDoubleOrNull()
             val notesText = notes.text?.toString() ?: ""
             val src = selectedSource
             val dst = selectedDestination
 
-            if (src == null || dst == null || dt.isEmpty() || tm.isEmpty() || seatsVal == null) {
+            if (src == null || dst == null || dt.isEmpty() || tm.isEmpty() || seatsVal == null || priceVal == null) {
                 Toast.makeText(this, "Fill all required fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -124,7 +126,7 @@ class AddTrajectActivity : AppCompatActivity() {
                     departureTime = tm,
                     seatsTotal = seatsVal,
                     seatsAvailable = seatsVal,
-                    pricePerSeat = 0.0,
+                    pricePerSeat = priceVal,
                     notes = notesText
                 )
                 db.tripDao().insertTrip(trip)

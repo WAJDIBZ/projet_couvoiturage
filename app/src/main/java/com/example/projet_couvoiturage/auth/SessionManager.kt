@@ -9,10 +9,25 @@ object SessionManager {
 
     private lateinit var prefs: android.content.SharedPreferences
 
+    private const val KEY_USER_ID = "user_id"
+
     var currentEmail: String?
         get() = prefs.getString(KEY_EMAIL, null)
         set(value) {
             prefs.edit().putString(KEY_EMAIL, value).apply()
+        }
+
+    var currentUserId: Long?
+        get() {
+            val id = prefs.getLong(KEY_USER_ID, -1L)
+            return if (id == -1L) null else id
+        }
+        set(value) {
+            if (value == null) {
+                prefs.edit().remove(KEY_USER_ID).apply()
+            } else {
+                prefs.edit().putLong(KEY_USER_ID, value).apply()
+            }
         }
 
     var currentRole: Role?

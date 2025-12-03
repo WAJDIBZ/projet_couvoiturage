@@ -117,10 +117,11 @@ class TripDetailFragment : Fragment() {
 
                 binding.btnBook.isEnabled = trip.seatsAvailable > 0
                 binding.btnBook.setOnClickListener {
-                    val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-                    val userId = prefs.getLong("USER_ID", -1)
-                    if (userId != -1L) {
+                    val userId = com.example.projet_couvoiturage.auth.SessionManager.currentUserId
+                    if (userId != null) {
                         viewModel.bookTrip(trip.id, userId)
+                    } else {
+                        Toast.makeText(requireContext(), "Please log in to book", Toast.LENGTH_SHORT).show()
                     }
                 }
                 

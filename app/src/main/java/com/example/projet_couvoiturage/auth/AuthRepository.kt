@@ -20,6 +20,7 @@ class AuthRepository(private val context: Context) {
         if (user != null) {
             SessionManager.currentEmail = user.email
             SessionManager.currentRole = if (user.isAdmin) Role.ADMIN else Role.USER
+            SessionManager.currentUserId = user.id
             return SessionManager.currentRole
         }
 
